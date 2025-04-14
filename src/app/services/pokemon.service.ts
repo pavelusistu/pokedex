@@ -1,5 +1,6 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
+import { Observable, map } from 'rxjs';
 
 @Injectable({
   providedIn: 'root',
@@ -10,11 +11,11 @@ export class PokemonService {
 
   constructor(private http: HttpClient) {}
 
-  getPokemonList(offset: number = 0, limit: number = 20) {
+  getPokemonList(offset: number = 0, limit: number = 20): Observable<any> {
     return this.http.get(`${this.baseUrl}?offset=${offset}&limit=${limit}`);
   }
 
-  getPokemonDetails(nameOrId: string) {
+  getPokemonDetails(nameOrId: string): Observable<any> {
     return this.http.get(`${this.baseUrl}/${nameOrId}`);
   }
 
@@ -44,5 +45,23 @@ export class PokemonService {
   isPokemonCaught(id: number): boolean {
     const caughtPokemons = this.getCaughtPokemons();
     return caughtPokemons.some((pokemon: any) => pokemon.id === id);
+  }
+
+  getCatchRate(pokemonName: string): Observable<number> {
+    return this.http
+      .get<any>(`https://pokeapi.co/api/v2/pokemon-species/${pokemonName}`)
+      .pipe(map((response) => response.capture_rate));
+  }
+
+  getRarity(catchRate: number): string {
+    if (catchRate > 200) {
+      return 'Common';
+    } else if (catchRate > 100) {
+      return 'Uncommon';
+    } else if (catchRate > 50) {
+      return 'Rare';
+    } else {
+      return 'Legendary/Mythical';
+    }
   }
 }

@@ -1,6 +1,7 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
 import { PokedexComponent } from './pokedex.component';
+import { RouterTestingModule } from '@angular/router/testing';
 
 describe('PokedexComponent', () => {
   let component: PokedexComponent;
@@ -8,9 +9,8 @@ describe('PokedexComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      imports: [PokedexComponent]
-    })
-    .compileComponents();
+      imports: [PokedexComponent, RouterTestingModule],
+    }).compileComponents();
 
     fixture = TestBed.createComponent(PokedexComponent);
     component = fixture.componentInstance;
@@ -19,5 +19,9 @@ describe('PokedexComponent', () => {
 
   it('should create', () => {
     expect(component).toBeTruthy();
+  });
+
+  it(`should have the 'Retviews-Pokedex' title`, () => {
+    expect(component.title).toEqual('Pokédex');
   });
 });

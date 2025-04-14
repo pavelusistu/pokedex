@@ -20,6 +20,7 @@ import { HttpClientModule } from '@angular/common/http';
     MatButtonModule,
     FormsModule,
     RouterModule,
+    HttpClientModule,
   ],
   templateUrl: './pokedex.component.html',
   styleUrls: ['./pokedex.component.scss'],
@@ -32,6 +33,7 @@ export class PokedexComponent implements OnInit {
   totalCount: number = 0;
   pageSize = 10;
   currentPage = 0;
+  title: string = 'Pokédex';
 
   @ViewChild(MatPaginator) paginator!: MatPaginator;
 

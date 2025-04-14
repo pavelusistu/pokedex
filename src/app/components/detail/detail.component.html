@@ -1,9 +1,38 @@
 <mat-card class="pokemon-detail" *ngIf="pokemonDetails && !loading">
   <mat-card-actions>
     <button mat-raised-button routerLink="/">Back to Pokedex</button>
-    <button mat-raised-button (click)="catchPokemon()">Catch Pokémon</button>
+    <button
+      *ngIf="successfullyCaughtMessage === '' && alreadyCaughtMessage === ''"
+      mat-raised-button
+      (click)="catchPokemon()"
+    >
+      Catch Pokémon
+    </button>
+    <span *ngIf="successfullyCaughtMessage !== ''" class="successful-message">{{
+      successfullyCaughtMessage
+    }}</span>
   </mat-card-actions>
+  <span *ngIf="alreadyCaughtMessage !== ''" class="already-caught">{{
+    alreadyCaughtMessage
+  }}</span>
   <mat-card-title>{{ pokemonDetails.name | titlecase }}</mat-card-title>
+
+  <mat-card-content>
+    <!-- Rarity Label -->
+    <p>
+      Rarity: <span [ngClass]="rarity.toLowerCase()">{{ rarity }}</span>
+    </p>
+
+    <!-- Star Rating for Catch Rate -->
+    <div class="row-container-stars">
+      <div *ngFor="let star of [1, 2, 3, 4, 5]">
+        <mat-icon [ngClass]="{ 'gold-star': star > catchRatePercentage / 20 }">
+          {{ star <= catchRatePercentage / 20 ? "star_border" : "star" }}
+        </mat-icon>
+      </div>
+    </div>
+  </mat-card-content>
+
   <mat-card-content>
     <div class="pokemon-image">
       <img
@@ -16,7 +45,10 @@
       <h3>Stats:</h3>
       <mat-list>
         <mat-list-item *ngFor="let stat of pokemonDetails.stats">
-          {{ stat.stat.name | titlecase }}: {{ stat.base_stat }}
+          <mat-icon class="attribute-icons">{{
+            statsIcons[stat.stat.name.toLowerCase()]
+          }}</mat-icon>
+          ({{ stat.stat.name | titlecase }}): {{ stat.base_stat }}
         </mat-list-item>
       </mat-list>
     </div>

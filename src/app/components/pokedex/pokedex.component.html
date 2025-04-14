@@ -1,15 +1,17 @@
 <div class="pokedex-container">
-  <h1>Pokédex</h1>
+  <h1>{{ title }}</h1>
 
   <div class="search-field">
     <mat-form-field class="search-input" appearance="outline">
       <mat-label>Search Pokémon</mat-label>
       <input matInput [(ngModel)]="searchTerm" (keydown.enter)="onSearch()" />
     </mat-form-field>
-    <button mat-raised-button (click)="onSearch()">Search</button>
-    <button mat-raised-button color="primary" routerLink="/caught">
-      Go to Caught Pokémons
-    </button>
+    <div class="buttons-container">
+      <button mat-raised-button (click)="onSearch()">Search</button>
+      <button mat-raised-button color="primary" routerLink="/caught">
+        Go to Caught Pokémons
+      </button>
+    </div>
   </div>
 
   <table mat-table [dataSource]="dataSource">

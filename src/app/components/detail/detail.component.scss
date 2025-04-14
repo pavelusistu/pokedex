@@ -1,3 +1,5 @@
+@import "../../../styles.scss";
+
 .pokemon-detail {
   text-align: center;
   margin: 20px;
@@ -37,5 +39,23 @@
 
   h3 {
     color: red !important;
+  }
+
+  .gold-star {
+    color: rgb(255, 215, 0);
+  }
+
+  .attribute-icons {
+    margin-bottom: -5px;
+  }
+
+  .successful-message {
+    color: green;
+  }
+
+  .already-caught {
+    font-size: 20px;
+    color: rgb(246, 210, 2);
+    margin-bottom: 10px;
   }
 }

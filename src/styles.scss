@@ -1,0 +1,11 @@
+.row-container {
+  display: flex;
+  flex-direction: reverse;
+  justify-content: center;
+
+  &-stars {
+    display: flex;
+    flex-direction: row-reverse;
+    justify-content: center;
+  }
+}
