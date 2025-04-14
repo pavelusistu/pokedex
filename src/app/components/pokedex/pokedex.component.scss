@@ -1,0 +1,24 @@
+.pokedex-container {
+  max-width: 900px;
+  margin: 20px auto;
+  padding: 16px;
+
+  .search-field {
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-start;
+    align-items: center;
+    gap: 10px;
+  }
+
+  table {
+    width: 100%;
+    margin-top: 20px;
+  }
+
+  .search-input {
+    display: inline-flex;
+    flex-direction: row;
+    min-width: 400px;
+  }
+}

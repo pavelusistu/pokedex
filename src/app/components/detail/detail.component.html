@@ -1,0 +1,36 @@
+<mat-card class="pokemon-detail" *ngIf="pokemonDetails && !loading">
+  <mat-card-actions>
+    <button mat-raised-button routerLink="/">Back to Pokedex</button>
+    <button mat-raised-button (click)="catchPokemon()">Catch Pokémon</button>
+  </mat-card-actions>
+  <mat-card-title>{{ pokemonDetails.name | titlecase }}</mat-card-title>
+  <mat-card-content>
+    <div class="pokemon-image">
+      <img
+        [src]="pokemonDetails.sprites.front_default"
+        alt="{{ pokemonDetails.name }}"
+      />
+    </div>
+
+    <div class="pokemon-stats">
+      <h3>Stats:</h3>
+      <mat-list>
+        <mat-list-item *ngFor="let stat of pokemonDetails.stats">
+          {{ stat.stat.name | titlecase }}: {{ stat.base_stat }}
+        </mat-list-item>
+      </mat-list>
+    </div>
+
+    <div class="pokemon-moves">
+      <h3>Moves:</h3>
+      <mat-list>
+        <mat-list-item *ngFor="let move of pokemonDetails.moves">
+          {{ move.move.name | titlecase }}
+        </mat-list-item>
+      </mat-list>
+    </div>
+  </mat-card-content>
+</mat-card>
+
+<div *ngIf="loading" class="loading">Loading...</div>
+<div *ngIf="error" class="error">{{ error }}</div>

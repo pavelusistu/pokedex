@@ -1,0 +1,47 @@
+<div class="pokedex-container">
+  <h1>Pokédex</h1>
+
+  <div class="search-field">
+    <mat-form-field class="search-input" appearance="outline">
+      <mat-label>Search Pokémon</mat-label>
+      <input matInput [(ngModel)]="searchTerm" (keydown.enter)="onSearch()" />
+    </mat-form-field>
+    <button mat-raised-button (click)="onSearch()">Search</button>
+    <button mat-raised-button color="primary" routerLink="/caught">
+      Go to Caught Pokémons
+    </button>
+  </div>
+
+  <table mat-table [dataSource]="dataSource">
+    <ng-container matColumnDef="name">
+      <th mat-header-cell *matHeaderCellDef>Name</th>
+      <td
+        mat-cell
+        *matCellDef="let element"
+        [routerLink]="['/pokemon', element.name]"
+      >
+        {{ element.name | titlecase }}
+      </td>
+    </ng-container>
+
+    <ng-container matColumnDef="action">
+      <th mat-header-cell *matHeaderCellDef>Action</th>
+      <td mat-cell *matCellDef="let element">
+        <button mat-button [routerLink]="['/pokemon', element.name]">
+          View
+        </button>
+      </td>
+    </ng-container>
+
+    <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+    <tr mat-row *matRowDef="let row; columns: displayedColumns"></tr>
+  </table>
+
+  <mat-paginator
+    [length]="totalCount"
+    [pageSize]="pageSize"
+    [pageSizeOptions]="[10, 20, 50]"
+    (page)="onPageChange($event)"
+  >
+  </mat-paginator>
+</div>

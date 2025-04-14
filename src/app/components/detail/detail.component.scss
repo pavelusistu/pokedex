@@ -1,0 +1,41 @@
+.pokemon-detail {
+  text-align: center;
+  margin: 20px;
+
+  .pokemon-image {
+    margin-bottom: 20px;
+  }
+
+  mat-card {
+    display: inline-block;
+    width: 100%;
+    max-width: 600px;
+    margin: 20px;
+  }
+
+  .pokemon-stats,
+  .pokemon-moves {
+    margin-top: 20px;
+  }
+
+  .loading,
+  .error {
+    text-align: center;
+    font-size: 20px;
+    margin-top: 20px;
+    color: red;
+  }
+
+  img {
+    width: 200px;
+    height: 200px;
+  }
+
+  button {
+    margin-right: 10px;
+  }
+
+  h3 {
+    color: red !important;
+  }
+}
